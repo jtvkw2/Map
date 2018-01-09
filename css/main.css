@@ -19,6 +19,8 @@ body{
     top: 0;
     left: 0;
     background-color: #111;
+    color: white;
+    font-size: 20px;
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
@@ -28,7 +30,7 @@ body{
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: white;
     display: block;
     transition: 0.3s
 }
@@ -51,6 +53,19 @@ body{
     margin-top: 75%;
 }
 
+.bullet{
+  list-style: none;
+}
+.search{
+  text-align: center;
+}
+.searchBar{
+  border-radius: 10px;
+}
+
+.locList{
+  padding: 35px;
+}
 @media screen and (max-height: 450px) {
     .sidenav {
       padding-top: 15px;

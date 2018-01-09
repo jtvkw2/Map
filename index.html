@@ -4,36 +4,48 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE-edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Jacob Voyles</title>
+		<title></title>
 		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 		<link href="https://fonts.googleapis.com/css?family=Raleway:100,300" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="css/bootstrap.css">
-
 		<link rel="stylesheet" href="css/main.css">
 	</head>
 	<body>
 		<div id="mySidenav" class="sidenav">
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<a href="#">Home</a>
-		  <a href="#">Portfolio</a>
-		  <a href="#">Map</a>
-		</div>
-		<div class= "container">
-			<div class= "row">
-				<div class = "col-md-1 col-sm-1 col-xs-1">
-					<span class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>
-				</div>
-				<div class = "col-md-11 col-sm-11 col-xs-11">
-					<h3>My Google Maps Demo</h3>
-				</div>
-
+			<form class= "search" action="#">
+        <input class = "searchBar" placeholder="Search…" type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+    	</form>
+			<div class="content">
+    		<ul class= "locList" data-bind="template: {name:'location', foreach:locations}">
+    		</ul>
 			</div>
 		</div>
+		<div id = "main">
+			<div class= "container">
+				<div class= "row">
+					<div class = "col-md-1 col-sm-1 col-xs-1">
+						<span class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span>
+					</div>
+					<div class = "col-md-11 col-sm-11 col-xs-11">
+						<h3>My Google Maps Demo</h3>
+					</div>
 
-    <div id="map"></div>
+				</div>
+			</div>
+
+	    <div id="map"></div>
+		</div>
 		<script src="js/main.js" charset="utf-8"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
+		<script type="text/html" id="location">
+    	<li class= "bullet">
+        <strong data-bind="text: name"></strong>
+    	</li>
+		</script>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXzhlFXyitCp31H2v4OB-Ci0aYto441c&callback=initMap"></script>
 	</body>
 </html>

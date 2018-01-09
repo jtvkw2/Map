@@ -12,7 +12,7 @@ function closeNav() {
 
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
-var beaches = [
+var locations = [
   ['Bondi Beach', -33.890542, 151.274856, 4],
   ['Coogee Beach', -33.923036, 151.259052, 5],
   ['Cronulla Beach', -34.028249, 151.157507, 3],
@@ -32,18 +32,48 @@ function initMap() {
     };
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
     infowindow = new google.maps.InfoWindow();
-    for (var i = 0; i < beaches.length; i++) {
-        addMarkers(beaches[i]);
+    for (var i = 0; i < locations.length; i++) {
+        addMarkers(locations[i]);
     }
 }
 
-function addMarkers(beach) {
+function addMarkers(location) {
     var marker = new google.maps.Marker({
-        position:{lat: beach[1], lng: beach[2]},
+        position:{lat: location[1], lng: location[2]},
         map: map
     });
     marker.addListener('click', function() {
-       infowindow.setContent(beach[0]);
+       infowindow.setContent(location[0]);
        infowindow.open(map, this);
     });
 }
+
+/* Sortable Lists */
+$(function() {
+var locations = [
+  {
+  name: "Bondi Beach"},
+{
+  name: "Coogee Beach"},
+{
+  name: "Cronulla Beach"},
+{
+  name: 'Manly Beach'},
+{
+  name: 'Maroubra Beach'}
+];
+
+
+var viewModel = {
+    query: ko.observable('')
+};
+
+viewModel.locations = ko.dependentObservable(function() {
+    var search = this.query().toLowerCase();
+    return ko.utils.arrayFilter(locations, function(location) {
+        return location.name.toLowerCase().indexOf(search) >= 0;
+    });
+}, viewModel);
+
+ko.applyBindings(viewModel);
+});
