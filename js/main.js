@@ -12,7 +12,7 @@ function closeNav() {
 
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
-var locations = [
+var places = [
   ['Bondi Beach', -33.890542, 151.274856, 4],
   ['Coogee Beach', -33.923036, 151.259052, 5],
   ['Cronulla Beach', -34.028249, 151.157507, 3],
@@ -32,40 +32,57 @@ function initMap() {
     };
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
     infowindow = new google.maps.InfoWindow();
-    for (var i = 0; i < locations.length; i++) {
-        addMarkers(locations[i]);
+    for (var i = 0; i < places.length; i++) {
+        addMarkers(places[i]);
     }
 }
 
-function addMarkers(location) {
+function addMarkers(place) {
     var marker = new google.maps.Marker({
-        position:{lat: location[1], lng: location[2]},
+        position:{lat: place[1], lng: place[2]},
         map: map
     });
     marker.addListener('click', function() {
-       infowindow.setContent(location[0]);
+       infowindow.setContent(place[0]);
        infowindow.open(map, this);
     });
 }
 
-/* Sortable Lists */
-$(function() {
 var locations = [
   {
-  name: "Bondi Beach"},
+  name: "Bondi Beach",
+  index: 0},
 {
-  name: "Coogee Beach"},
+  name: "Coogee Beach",
+  index: 1},
 {
-  name: "Cronulla Beach"},
+  name: "Cronulla Beach",
+  index: 2},
 {
-  name: 'Manly Beach'},
+  name: 'Manly Beach',
+  index: 3},
 {
-  name: 'Maroubra Beach'}
+  name: 'Maroubra Beach',
+  index: 4}
 ];
-
+/* Sortable Lists */
+$(function() {
 
 var viewModel = {
-    query: ko.observable('')
+    query: ko.observable(''),
+
+    newLocation: function (index)
+    {
+      console.log(index);
+      currentMarker = new google.maps.Marker({
+          position:{lat: places[1][1], lng: places[1][2]},
+          map: map
+      });
+      map.setCenter(new google.maps.LatLng(places[1][1], places[1][2]));
+      currentMarker.addListener('center_changed', function() {
+         infowindow.open(map, this);
+      });
+    }
 };
 
 viewModel.locations = ko.dependentObservable(function() {

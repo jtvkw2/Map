@@ -20,8 +20,10 @@
         <input class = "searchBar" placeholder="Search…" type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
     	</form>
 			<div class="content">
-    		<ul class= "locList" data-bind="template: {name:'location', foreach:locations}">
-    		</ul>
+				<a class = "searchable" href="#" >
+					<ul class= "locList" data-bind = "template: {name:'location', foreach:locations}, click: function(index) { newLocation({index: 'location', foreach:locations}, index)}">
+    			</ul>
+				</a>
 			</div>
 		</div>
 		<div id = "main">
