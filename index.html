@@ -5,7 +5,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE-edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title></title>
-		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 		<link href="https://fonts.googleapis.com/css?family=Raleway:100,300" rel="stylesheet">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,11 +16,11 @@
 		<div id="mySidenav" class="sidenav">
 		  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 			<form class= "search" action="#">
-        <input class = "searchBar" placeholder="Search…" type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+        <input class = "searchBar" placeholder="Search…" type="search" name="q" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="on">
     	</form>
 			<div class="content">
 				<a class = "searchable" href="#" >
-					<ul class= "locList" data-bind = "template: {name:'location', foreach:locations}, click: function(index) { newLocation({index: 'location', foreach:locations}, index)}">
+					<ul class= "locList" data-bind = "template: {name:'location', foreach:locations}, click: function(index) { newLocation(places.indexOf({name:'location'})[0], index)}">
     			</ul>
 				</a>
 			</div>
@@ -45,7 +44,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
 		<script type="text/html" id="location">
     	<li class= "bullet">
-        <strong data-bind="text: name"></strong>
+        <strong data-bind="text: name"></strong><hr>
     	</li>
 		</script>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXzhlFXyitCp31H2v4OB-Ci0aYto441c&callback=initMap"></script>

@@ -13,11 +13,11 @@ function closeNav() {
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
 var places = [
-  ['Bondi Beach', -33.890542, 151.274856, 4],
-  ['Coogee Beach', -33.923036, 151.259052, 5],
-  ['Cronulla Beach', -34.028249, 151.157507, 3],
-  ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-  ['Maroubra Beach', -33.950198, 151.259302, 1]
+  ['Fort Lewis', 47.1261838830712, -122.50854491937491, 5],
+  ['NAS Whidbey Island', 48.34709388383968, -122.66647338617179, 4],
+  ['Bangor Base', 47.72035804907695, -122.70973205316398, 3],
+  ['Keyport Base', 47.697255902139425, -122.62184142816398, 2],
+  ['Naval Base Kitsap', 47.56028140643856, -122.64587402093741, 1]
 ];
 
 
@@ -25,10 +25,10 @@ var map;
 var infowindow;
 
 function initMap() {
-    var latlng = {lat: -33.890, lng: 151.274};
+    var latlng = {lat: 47.6410663, lng: -122.6881319};
     var mapOptions = {
         center: latlng,
-        zoom: 10
+        zoom: 8
     };
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
     infowindow = new google.maps.InfoWindow();
@@ -37,32 +37,32 @@ function initMap() {
     }
 }
 
-function addMarkers(place) {
+function addMarkers(newPlace) {
     var marker = new google.maps.Marker({
-        position:{lat: place[1], lng: place[2]},
+        position:{lat: newPlace[1], lng: newPlace[2]},
         map: map
     });
     marker.addListener('click', function() {
-       infowindow.setContent(place[0]);
+       infowindow.setContent(newPlace[0]);
        infowindow.open(map, this);
     });
 }
 
 var locations = [
   {
-  name: "Bondi Beach",
+  name: "Fort Lewis",
   index: 0},
 {
-  name: "Coogee Beach",
-  index: 1},
-{
-  name: "Cronulla Beach",
-  index: 2},
-{
-  name: 'Manly Beach',
+  name: "NAS Whidbey Island",
   index: 3},
 {
-  name: 'Maroubra Beach',
+  name: "Bangor Base",
+  index: 1},
+{
+  name: "Keyport Base",
+  index: 2},
+{
+  name: "Naval Base Kitsap",
   index: 4}
 ];
 /* Sortable Lists */

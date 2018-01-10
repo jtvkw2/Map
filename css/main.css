@@ -65,6 +65,7 @@ body{
 
 .locList{
   padding: 35px;
+  font-size: 20px;
 }
 @media screen and (max-height: 450px) {
     .sidenav {
