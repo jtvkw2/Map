@@ -43,9 +43,9 @@
 		<script src="js/main.js" charset="utf-8"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
 		<script type="text/html" id="location">
-    	<li class= "bullet">
-        <strong data-bind="text: name"></strong><hr>
-    	</li>
+ 			<li class= "bullet">
+	 			<strong data-bind="text: name, , click: $parent.newLocation"></strong><hr>
+ 			</li>
 		</script>
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsXzhlFXyitCp31H2v4OB-Ci0aYto441c&callback=initMap"></script>
 	</body>

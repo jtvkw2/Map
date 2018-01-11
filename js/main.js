@@ -54,13 +54,13 @@ var locations = [
   index: 0},
 {
   name: "NAS Whidbey Island",
-  index: 3},
-{
-  name: "Bangor Base",
   index: 1},
 {
-  name: "Keyport Base",
+  name: "Bangor Base",
   index: 2},
+{
+  name: "Keyport Base",
+  index: 3},
 {
   name: "Naval Base Kitsap",
   index: 4}
@@ -71,14 +71,16 @@ $(function() {
 var viewModel = {
     query: ko.observable(''),
 
-    newLocation: function (index)
+    newLocation: function (placeHolder)
     {
+      console.log(placeHolder);
+      var index = placeHolder.index;
       console.log(index);
       currentMarker = new google.maps.Marker({
-          position:{lat: places[1][1], lng: places[1][2]},
+          position:{lat: places[index][1], lng: places[index][2]},
           map: map
       });
-      map.setCenter(new google.maps.LatLng(places[1][1], places[1][2]));
+      map.setCenter(new google.maps.LatLng(places[index][1], places[index][2]));
       currentMarker.addListener('center_changed', function() {
          infowindow.open(map, this);
       });
