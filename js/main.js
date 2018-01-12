@@ -1,12 +1,12 @@
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+    //document.getElementById("main").style.marginLeft = "250px";
     document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
+  //  document.getElementById("main").style.marginLeft = "0";
     document.body.style.backgroundColor = "white";
 }
 
@@ -43,10 +43,15 @@ function addMarkers(newPlace) {
         map: map
     });
     marker.addListener('click', function() {
-       infowindow.setContent(newPlace[0]);
+       marker.setAnimation(google.maps.Animation.DROP);
+       infowindow.setContent('<h3 class = "infoTitle"> '+newPlace[0]+'</h3>'+ '<div id="names">'+content+
+       '</div>');
        infowindow.open(map, this);
     });
 }
+
+
+
 
 var locations = [
   {
@@ -73,18 +78,17 @@ var viewModel = {
 
     newLocation: function (placeHolder)
     {
-      console.log(placeHolder);
       var index = placeHolder.index;
       console.log(index);
-      currentMarker = new google.maps.Marker({
-          position:{lat: places[index][1], lng: places[index][2]},
-          map: map
-      });
       map.setCenter(new google.maps.LatLng(places[index][1], places[index][2]));
-      currentMarker.addListener('center_changed', function() {
+      //currentMarker[index].setMap(null);
+      setTimeout(marker.setAnimation(google.maps.Animation.DROP), 3000);
+      marker.addListener('click', function() {
          infowindow.open(map, this);
       });
     }
+
+//});
 };
 
 viewModel.locations = ko.dependentObservable(function() {
@@ -96,3 +100,26 @@ viewModel.locations = ko.dependentObservable(function() {
 
 ko.applyBindings(viewModel);
 });
+/*
+
+const request = require('request');
+
+request({
+  url: 'https://api.foursquare.com/search?ll=47.126,-122.5085',
+  method: 'GET',
+  qs: {
+    client_id: 'QF1NFRPXGG5WABAHQMTFQLZBXY3UTUIGU3AOAL0UP1X5VCOO',
+    client_secret: 'CEUFMT3BWBSYYSSL5U52JLKWBVEJWZNY5CZXCB3RQAFRMEZV3',
+    //ll: newPlace[1] , newPlace[2],
+    name: this.name,
+    v: this.v,
+    url: this.url
+  }
+}, function(err, res, body) {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(body);
+    }
+});
+*/
