@@ -134,5 +134,5 @@ ko.applyBindings(viewModel);
 });
 
 function googleError(){
-  alert("Google Maps has had an issue loading, please try refreshing the page")
+  alert("Google Maps has had an issue loading, please try refreshing the page");
 }
