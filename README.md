@@ -5,7 +5,7 @@ This is a Map of Kitsap County State Parks. The app allows you to filter by name
 ## How to Use
 
 - Clone the **[repo](https://github.com/jtvkw2/Map)** and open index.html -- or --
-- Play on GitHub.io: **[Feed Reader](https://jtvkw2.github.io/Map/)**
+- Play on GitHub.io: **[Google Map Demo](https://jtvkw2.github.io/Map/)**
 
 ### Installing
 

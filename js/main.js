@@ -39,18 +39,18 @@ function initMap() {
 /* Adds Markers and InfoWindow content */
 function addMarkers(newPlace) {
     var ltln = newPlace[1] + "," + newPlace[2];
-    var client_id = "&client_id=QF1NFRPXGG5WABAHQMTFQLZBXY3UTUIGU3AOAL0UP1X5VCOO"
+    var client_id = "&client_id=QF1NFRPXGG5WABAHQMTFQLZBXY3UTUIGU3AOAL0UP1X5VCOO";
     var client_secret = "&client_secret=EUFMT3BWBSYYSSL5U52JLKWBVEJWZNY5CZXCB3RQAFRMEZV3";
     var venueAPI = "https://api.foursquare.com/v2/venues/search?ll="+ltln+"&v=20140715"+client_id+client_secret;
     var currentNum, currentURL, currentDescription;
     $.getJSON(venueAPI, function(data) { //foursquare request
                 //  console.log(data);
-                  currentURL = data.response.venues[0].url;
-                  currentNum = data.response.venues[0].contact.formattedPhone;
-                  currentDescription = data.response.venues[0].location.address;
+                  currentURL = data.response.venues[0].url || 'No URL Found';
+                  currentNum = data.response.venues[0].contact.formattedPhone || 'No Phone Number Found';
+                  currentDescription = data.response.venues[0].location.address || 'No Address Found';
     }).fail(function() { //If foursquare fails
                 alert(
-                    "Foursquare had an issue loading, please try refreshing the page"
+                    "Foursquare has had an issue loading, please try refreshing the page"
                 );
     });
     var marker = new google.maps.Marker({ //content of marker
@@ -132,3 +132,7 @@ viewModel.locations = ko.dependentObservable(function() {
 }, viewModel);
 ko.applyBindings(viewModel);
 });
+
+function googleError(){
+  alert("Google Maps has had an issue loading, please try refreshing the page")
+}
