@@ -102,7 +102,6 @@ var viewModel = {
       google.maps.event.trigger(markers[index],'click'); //opens infowindow
     },
 
-
     removeMarker: function(){ //adds and removes markers based on search
       for (var i = 0; i < locations.length; i++){
         if(locations[i].visible === true) {
@@ -128,7 +127,6 @@ viewModel.locations = ko.dependentObservable(function() {
             location.visible = result; //sets true or false to all locations
             viewModel.removeMarker();
             return result;
-
         });
     }
 }, viewModel);
